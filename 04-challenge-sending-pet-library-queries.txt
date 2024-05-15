@@ -1,0 +1,9 @@
+PET LIBRARY LAB
+
+https://pet-library.moonhighway.com
+
+1. Write a query to get allPets with name, weight, and category.
+
+2. Extend the query to see who has checked out the pet
+
+3. Extra Credit: Create an account using a mutation.
