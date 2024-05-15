@@ -1,0 +1,265 @@
+query {
+  liftCount
+  allLifts {
+    name
+    capacity
+  }
+}
+
+RETURNS
+
+{
+  "data": {
+    "liftCount": 11,
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6
+      },
+      {
+        "name": "Summit",
+        "capacity": 6
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2
+      },
+      {
+        "name": "Western States",
+        "capacity": 6
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2
+      }
+    ]
+  }
+}
+
+----------------------------------------------
+
+Show all lifts that are open
+
+query {
+  liftCount(status: OPEN)
+  allLifts {
+    name
+    capacity
+  }
+}
+
+RETURNS
+
+{
+  "data": {
+    "liftCount": 6,
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6
+      },
+      {
+        "name": "Summit",
+        "capacity": 6
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2
+      },
+      {
+        "name": "Western States",
+        "capacity": 6
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2
+      }
+    ]
+  }
+}
+
+
+-------------------------------------------------
+
+
+Show all lifts that are open and closed
+
+query {
+  openLifs: liftCount(status: OPEN)
+  closedLifts: liftCount(status: CLOSED)
+  allLifts {
+    name
+    capacity
+  }
+}
+
+RETURNS
+
+{
+  "data": {
+    "openLifts": 6,
+    "closedLifts": 2,
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6
+      },
+      {
+        "name": "Summit",
+        "capacity": 6
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2
+      },
+      {
+        "name": "Western States",
+        "capacity": 6
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2
+      }
+    ]
+  }
+}
+
+------------------------------------------
+
+Field names can have an alais too
+
+query {
+  openLifts: liftCount(status: OPEN),
+  closedLifts: liftCount(status: CLOSED)
+  allLifts {
+    liftName: name
+    capacity
+  }
+}
+
+RETURNS
+
+{
+  "data": {
+    "openLifts": 6,
+    "closedLifts": 2,
+    "allLifts": [
+      {
+        "liftName": "Astra Express",
+        "capacity": 3
+      },
+      {
+        "liftName": "Jazz Cat",
+        "capacity": 2
+      },
+      {
+        "liftName": "Jolly Roger",
+        "capacity": 6
+      },
+      {
+        "liftName": "Neptune Rope",
+        "capacity": 1
+      },
+      {
+        "liftName": "Panorama",
+        "capacity": 8
+      },
+      {
+        "liftName": "Prickly Peak",
+        "capacity": 3
+      },
+      {
+        "liftName": "Snowtooth Express",
+        "capacity": 6
+      },
+      {
+        "liftName": "Summit",
+        "capacity": 6
+      },
+      {
+        "liftName": "Wally's",
+        "capacity": 2
+      },
+      {
+        "liftName": "Western States",
+        "capacity": 6
+      },
+      {
+        "liftName": "Whirlybird",
+        "capacity": 2
+      }
+    ]
+  }
+}
