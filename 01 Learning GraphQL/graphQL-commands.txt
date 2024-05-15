@@ -1,0 +1,77 @@
+query {
+  liftCount
+}
+
+returns:
+
+{
+  "data": {
+    "liftCount": 11
+  }
+}
+
+-----------------------------------
+
+query {
+  allLifts {
+    name
+    capacity
+  }
+  liftCount
+}
+
+returns:
+
+{
+  "data": {
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6
+      },
+      {
+        "name": "Summit",
+        "capacity": 6
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2
+      },
+      {
+        "name": "Western States",
+        "capacity": 6
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2
+      }
+    ],
+    "liftCount": 11
+  }
+}
+
+-------------------------------------------
