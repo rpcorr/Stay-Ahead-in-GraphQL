@@ -1,0 +1,21 @@
+Setting a trail status from open to closed
+
+mutation {
+  setTrailStatus(id: "goosebumps" status:CLOSED){
+    name
+    status
+  }
+}
+
+RETURNS
+
+{
+  "data": {
+    "setTrailStatus": {
+      "name": "Goosebumps",
+      "status": "CLOSED"
+    }
+  }
+}
+
+------------------------------------------------------

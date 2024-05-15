@@ -1,0 +1,19 @@
+You can provide a name for a query when there are more than one query.
+
+When it is time to run, you can choose which query to run
+
+query AllLifts {
+  allLifts {
+    name
+    capacity
+    status
+    night
+  }
+}
+
+query AllTrails {
+  allTrails {
+    name
+    status
+  }
+}

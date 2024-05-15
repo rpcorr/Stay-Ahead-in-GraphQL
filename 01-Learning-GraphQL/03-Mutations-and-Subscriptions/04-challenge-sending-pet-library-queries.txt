@@ -1,0 +1,365 @@
+
+PET LIBRARY LAB
+
+https://pet-library.moonhighway.com
+
+1. Write a query to get allPets with name, weight, and category.
+
+query {
+  allPets {
+    name
+    weight
+    category
+  }
+}
+
+RETURNS
+
+
+{
+  "data": {
+    "allPets": [
+      {
+        "name": "Buddy",
+        "weight": 9.2,
+        "category": "CAT"
+      },
+      {
+        "name": "Archy",
+        "weight": 19.9,
+        "category": "DOG"
+      },
+      {
+        "name": "Pax",
+        "weight": 52.7,
+        "category": "DOG"
+      },
+      {
+        "name": "Lucie",
+        "weight": 44.7,
+        "category": "DOG"
+      },
+      {
+        "name": "Pip",
+        "weight": 3.7,
+        "category": "RABBIT"
+      },
+      {
+        "name": "Beebee",
+        "weight": 13.3,
+        "category": "CAT"
+      },
+      {
+        "name": "Peep",
+        "weight": 6.5,
+        "category": "RABBIT"
+      },
+      {
+        "name": "Mini",
+        "weight": 5.2,
+        "category": "CAT"
+      },
+      {
+        "name": "Rainier McCheddarton",
+        "weight": 70.4,
+        "category": "DOG"
+      },
+      {
+        "name": "Canela",
+        "weight": 100.4,
+        "category": "DOG"
+      },
+      {
+        "name": "Pluto",
+        "weight": 66.1,
+        "category": "STINGRAY"
+      },
+      {
+        "name": "Luna",
+        "weight": 75.4,
+        "category": "DOG"
+      },
+      {
+        "name": "Lazer",
+        "weight": 15.7,
+        "category": "STINGRAY"
+      },
+      {
+        "name": "Jungle",
+        "weight": 9.7,
+        "category": "CAT"
+      },
+      {
+        "name": "Sweetums",
+        "weight": 4.6,
+        "category": "RABBIT"
+      },
+      {
+        "name": "Otis",
+        "weight": 50.4,
+        "category": "DOG"
+      },
+      {
+        "name": "Jerry",
+        "weight": 5.5,
+        "category": "RABBIT"
+      },
+      {
+        "name": "Biscuit",
+        "weight": 10.2,
+        "category": "CAT"
+      },
+      {
+        "name": "Benji",
+        "weight": 10.9,
+        "category": "CAT"
+      },
+      {
+        "name": "Pillow",
+        "weight": 8.3,
+        "category": "CAT"
+      },
+      {
+        "name": "Mehla",
+        "weight": 90.3,
+        "category": "DOG"
+      },
+      {
+        "name": "Danton",
+        "weight": 50.4,
+        "category": "DOG"
+      },
+      {
+        "name": "Steve",
+        "weight": 20.4,
+        "category": "STINGRAY"
+      },
+      {
+        "name": "Switchblade",
+        "weight": 20.7,
+        "category": "STINGRAY"
+      },
+      {
+        "name": "Jason",
+        "weight": 2.7,
+        "category": "RABBIT"
+      }
+    ]
+  }
+}
+
+
+2. Extend the query to see who has checked out the pet
+
+query {
+  allPets {
+    name
+    weight
+    category
+    inCareOf {
+      name
+    }
+  }
+}
+
+
+RETURNS
+
+{
+  "data": {
+    "allPets": [
+      {
+        "name": "Buddy",
+        "weight": 9.2,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Sahil"
+        }
+      },
+      {
+        "name": "Archy",
+        "weight": 19.9,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "Sahil"
+        }
+      },
+      {
+        "name": "Pax",
+        "weight": 52.7,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "Sebastian Zapata Mardini"
+        }
+      },
+      {
+        "name": "Lucie",
+        "weight": 44.7,
+        "category": "DOG",
+        "inCareOf": null
+      },
+      {
+        "name": "Pip",
+        "weight": 3.7,
+        "category": "RABBIT",
+        "inCareOf": null
+      },
+      {
+        "name": "Beebee",
+        "weight": 13.3,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Michael"
+        }
+      },
+      {
+        "name": "Peep",
+        "weight": 6.5,
+        "category": "RABBIT",
+        "inCareOf": null
+      },
+      {
+        "name": "Mini",
+        "weight": 5.2,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Simon"
+        }
+      },
+      {
+        "name": "Rainier McCheddarton",
+        "weight": 70.4,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "Simon"
+        }
+      },
+      {
+        "name": "Canela",
+        "weight": 100.4,
+        "category": "DOG",
+        "inCareOf": null
+      },
+      {
+        "name": "Pluto",
+        "weight": 66.1,
+        "category": "STINGRAY",
+        "inCareOf": null
+      },
+      {
+        "name": "Luna",
+        "weight": 75.4,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "Eve Porcello"
+        }
+      },
+      {
+        "name": "Lazer",
+        "weight": 15.7,
+        "category": "STINGRAY",
+        "inCareOf": null
+      },
+      {
+        "name": "Jungle",
+        "weight": 9.7,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Homer"
+        }
+      },
+      {
+        "name": "Sweetums",
+        "weight": 4.6,
+        "category": "RABBIT",
+        "inCareOf": null
+      },
+      {
+        "name": "Otis",
+        "weight": 50.4,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "Lisa VD"
+        }
+      },
+      {
+        "name": "Jerry",
+        "weight": 5.5,
+        "category": "RABBIT",
+        "inCareOf": null
+      },
+      {
+        "name": "Biscuit",
+        "weight": 10.2,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Homer"
+        }
+      },
+      {
+        "name": "Benji",
+        "weight": 10.9,
+        "category": "CAT",
+        "inCareOf": {
+          "name": "Bob Dude"
+        }
+      },
+      {
+        "name": "Pillow",
+        "weight": 8.3,
+        "category": "CAT",
+        "inCareOf": null
+      },
+      {
+        "name": "Mehla",
+        "weight": 90.3,
+        "category": "DOG",
+        "inCareOf": null
+      },
+      {
+        "name": "Danton",
+        "weight": 50.4,
+        "category": "DOG",
+        "inCareOf": {
+          "name": "me"
+        }
+      },
+      {
+        "name": "Steve",
+        "weight": 20.4,
+        "category": "STINGRAY",
+        "inCareOf": null
+      },
+      {
+        "name": "Switchblade",
+        "weight": 20.7,
+        "category": "STINGRAY",
+        "inCareOf": {
+          "name": "Jimmy"
+        }
+      },
+      {
+        "name": "Jason",
+        "weight": 2.7,
+        "category": "RABBIT",
+        "inCareOf": null
+      }
+    ]
+  }
+}
+
+
+
+Extra Credit: Create an account using a mutation.
+
+
+mutation {
+    createAccount(input: {
+        name: "Ronan Corr"
+        username: "ronancorr"
+        password: "password"
+    }) {
+        username
+        name
+    }
+}

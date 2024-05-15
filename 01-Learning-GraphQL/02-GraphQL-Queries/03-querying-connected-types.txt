@@ -1,0 +1,1587 @@
+Determine which trails are accessible from which lift (connection between lifts and trails)
+
+query {
+  allLifts {
+    name
+    capacity
+    status
+    night
+    trailAccess {
+      name
+    }
+  }
+}
+
+RESULTS:
+
+{
+  "data": {
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Bird"
+          },
+          {
+            "name": "Blackhawk"
+          },
+          {
+            "name": "Duck's Revenge"
+          },
+          {
+            "name": "Ice Streak"
+          },
+          {
+            "name": "Parachute"
+          },
+          {
+            "name": "Goosebumps"
+          }
+        ]
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Goosebumps"
+          },
+          {
+            "name": "River Run"
+          },
+          {
+            "name": "Duck's Revenge"
+          },
+          {
+            "name": "Cape Cod"
+          },
+          {
+            "name": "Grandma"
+          },
+          {
+            "name": "Wild Child"
+          },
+          {
+            "name": "Old Witch"
+          }
+        ]
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": true,
+        "trailAccess": [
+          {
+            "name": "Dance Fight"
+          },
+          {
+            "name": "Sneaky Pete"
+          },
+          {
+            "name": "Bear Cave"
+          },
+          {
+            "name": "Humpty Dumpty"
+          },
+          {
+            "name": "Meatball"
+          },
+          {
+            "name": "Early Riser"
+          },
+          {
+            "name": "Sunset"
+          }
+        ]
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Home Run"
+          },
+          {
+            "name": "Crosscut"
+          }
+        ]
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Ocean Breeze"
+          },
+          {
+            "name": "Songstress"
+          },
+          {
+            "name": "Mountain Run"
+          },
+          {
+            "name": "Summit Saunter"
+          },
+          {
+            "name": "Hemmed Slacks"
+          },
+          {
+            "name": "David's Dive"
+          },
+          {
+            "name": "Quarry Chute"
+          },
+          {
+            "name": "Sunset"
+          },
+          {
+            "name": "Blackhawk"
+          }
+        ]
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Crooked Chute"
+          },
+          {
+            "name": "Mark's Chute"
+          },
+          {
+            "name": "The Terrible Chute"
+          },
+          {
+            "name": "Magma Chute"
+          },
+          {
+            "name": "Saddleback Chute"
+          },
+          {
+            "name": "Omega Chute"
+          },
+          {
+            "name": "Adirondack Chute"
+          },
+          {
+            "name": "Chicken Out Traverse"
+          }
+        ]
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Streak"
+          },
+          {
+            "name": "Hoya Saxa"
+          },
+          {
+            "name": "Michigan Ave"
+          },
+          {
+            "name": "Parker Downhill"
+          },
+          {
+            "name": "Wiggle Waggle"
+          },
+          {
+            "name": "Meow Face"
+          },
+          {
+            "name": "Golden Ticket"
+          }
+        ]
+      },
+      {
+        "name": "Summit",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Golden Ticket"
+          },
+          {
+            "name": "Summit Bowl"
+          },
+          {
+            "name": "Hangar Bowl"
+          },
+          {
+            "name": "Big Gully"
+          },
+          {
+            "name": "Bigger Gully"
+          },
+          {
+            "name": "Broadway Bowl"
+          },
+          {
+            "name": "Fish Bowl"
+          }
+        ]
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Buford"
+          },
+          {
+            "name": "Slippy Stream"
+          },
+          {
+            "name": "Peacock"
+          },
+          {
+            "name": "Fun Run"
+          },
+          {
+            "name": "Sweet Treat"
+          },
+          {
+            "name": "Stump Alley"
+          }
+        ]
+      },
+      {
+        "name": "Western States",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Centennial"
+          },
+          {
+            "name": "Biennial"
+          },
+          {
+            "name": "Millenial"
+          },
+          {
+            "name": "Searcher"
+          },
+          {
+            "name": "White Lightning"
+          },
+          {
+            "name": "Richard's Return"
+          },
+          {
+            "name": "Head Chutes Gate A"
+          },
+          {
+            "name": "Head Chutes Gate B"
+          },
+          {
+            "name": "Head Chutes Gate C"
+          }
+        ]
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Bird Glade"
+          },
+          {
+            "name": "Big Bird"
+          },
+          {
+            "name": "Roller Park"
+          },
+          {
+            "name": "Owl Glade"
+          },
+          {
+            "name": "Whippersnapper Ridge"
+          },
+          {
+            "name": "Drop In"
+          },
+          {
+            "name": "Mosh Pit"
+          },
+          {
+            "name": "Richard's Return"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+-------------------------------------------------
+
+Show the trailAccess name and status (connection between lifts and trails)
+
+query {
+  allLifts {
+    name
+    capacity
+    status
+    night
+    trailAccess {
+      name
+      status
+    }
+  }
+}
+
+
+RESULTS
+
+{
+  "data": {
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Bird",
+            "status": "OPEN"
+          },
+          {
+            "name": "Blackhawk",
+            "status": "OPEN"
+          },
+          {
+            "name": "Duck's Revenge",
+            "status": "OPEN"
+          },
+          {
+            "name": "Ice Streak",
+            "status": "OPEN"
+          },
+          {
+            "name": "Parachute",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Goosebumps",
+            "status": "CLOSED"
+          }
+        ]
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Goosebumps",
+            "status": "CLOSED"
+          },
+          {
+            "name": "River Run",
+            "status": "OPEN"
+          },
+          {
+            "name": "Duck's Revenge",
+            "status": "OPEN"
+          },
+          {
+            "name": "Cape Cod",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Grandma",
+            "status": "OPEN"
+          },
+          {
+            "name": "Wild Child",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Old Witch",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": true,
+        "trailAccess": [
+          {
+            "name": "Dance Fight",
+            "status": "OPEN"
+          },
+          {
+            "name": "Sneaky Pete",
+            "status": "OPEN"
+          },
+          {
+            "name": "Bear Cave",
+            "status": "OPEN"
+          },
+          {
+            "name": "Humpty Dumpty",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Meatball",
+            "status": "OPEN"
+          },
+          {
+            "name": "Early Riser",
+            "status": "OPEN"
+          },
+          {
+            "name": "Sunset",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Home Run",
+            "status": "OPEN"
+          },
+          {
+            "name": "Crosscut",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Ocean Breeze",
+            "status": "OPEN"
+          },
+          {
+            "name": "Songstress",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Mountain Run",
+            "status": "OPEN"
+          },
+          {
+            "name": "Summit Saunter",
+            "status": "OPEN"
+          },
+          {
+            "name": "Hemmed Slacks",
+            "status": "OPEN"
+          },
+          {
+            "name": "David's Dive",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Quarry Chute",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Sunset",
+            "status": "OPEN"
+          },
+          {
+            "name": "Blackhawk",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Crooked Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Mark's Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "The Terrible Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Magma Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Saddleback Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Omega Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Adirondack Chute",
+            "status": "OPEN"
+          },
+          {
+            "name": "Chicken Out Traverse",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Streak",
+            "status": "OPEN"
+          },
+          {
+            "name": "Hoya Saxa",
+            "status": "OPEN"
+          },
+          {
+            "name": "Michigan Ave",
+            "status": "OPEN"
+          },
+          {
+            "name": "Parker Downhill",
+            "status": "OPEN"
+          },
+          {
+            "name": "Wiggle Waggle",
+            "status": "OPEN"
+          },
+          {
+            "name": "Meow Face",
+            "status": "OPEN"
+          },
+          {
+            "name": "Golden Ticket",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "name": "Summit",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Golden Ticket",
+            "status": "OPEN"
+          },
+          {
+            "name": "Summit Bowl",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Hangar Bowl",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Big Gully",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Bigger Gully",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Broadway Bowl",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Fish Bowl",
+            "status": "CLOSED"
+          }
+        ]
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Buford",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Slippy Stream",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Peacock",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Fun Run",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Sweet Treat",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Stump Alley",
+            "status": "CLOSED"
+          }
+        ]
+      },
+      {
+        "name": "Western States",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Centennial",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Biennial",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Millenial",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Searcher",
+            "status": "CLOSED"
+          },
+          {
+            "name": "White Lightning",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Richard's Return",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Head Chutes Gate A",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Head Chutes Gate B",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Head Chutes Gate C",
+            "status": "CLOSED"
+          }
+        ]
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Bird Glade",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Big Bird",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Roller Park",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Owl Glade",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Whippersnapper Ridge",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Drop In",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Mosh Pit",
+            "status": "CLOSED"
+          },
+          {
+            "name": "Richard's Return",
+            "status": "CLOSED"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+------------------------------------------------------
+
+(connection between trails and lifts)
+
+query {
+  allLifts {
+    name
+    capacity
+    status
+    night
+    trailAccess {
+      name
+      status
+      accessedByLifts {
+        name
+      }
+      
+    }
+  }
+}
+
+
+RESULTS
+
+{
+  "data": {
+    "allLifts": [
+      {
+        "name": "Astra Express",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Bird",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              }
+            ]
+          },
+          {
+            "name": "Blackhawk",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              },
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Duck's Revenge",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              }
+            ]
+          },
+          {
+            "name": "Ice Streak",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              }
+            ]
+          },
+          {
+            "name": "Parachute",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              }
+            ]
+          },
+          {
+            "name": "Goosebumps",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              },
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Jazz Cat",
+        "capacity": 2,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Goosebumps",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              },
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          },
+          {
+            "name": "River Run",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          },
+          {
+            "name": "Duck's Revenge",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              }
+            ]
+          },
+          {
+            "name": "Cape Cod",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          },
+          {
+            "name": "Grandma",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          },
+          {
+            "name": "Wild Child",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          },
+          {
+            "name": "Old Witch",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jazz Cat"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Jolly Roger",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": true,
+        "trailAccess": [
+          {
+            "name": "Dance Fight",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Sneaky Pete",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Bear Cave",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Humpty Dumpty",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Meatball",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Early Riser",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Sunset",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Neptune Rope",
+        "capacity": 1,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Home Run",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Neptune Rope"
+              }
+            ]
+          },
+          {
+            "name": "Crosscut",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Neptune Rope"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Panorama",
+        "capacity": 8,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Ocean Breeze",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Songstress",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Mountain Run",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Summit Saunter",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Hemmed Slacks",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "David's Dive",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Quarry Chute",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Panorama"
+              }
+            ]
+          },
+          {
+            "name": "Sunset",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Jolly Roger"
+              }
+            ]
+          },
+          {
+            "name": "Blackhawk",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Astra Express"
+              },
+              {
+                "name": "Panorama"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Prickly Peak",
+        "capacity": 3,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Crooked Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Mark's Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "The Terrible Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Magma Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Saddleback Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Omega Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Adirondack Chute",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          },
+          {
+            "name": "Chicken Out Traverse",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Prickly Peak"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Snowtooth Express",
+        "capacity": 6,
+        "status": "OPEN",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Blue Streak",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Hoya Saxa",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Michigan Ave",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Parker Downhill",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Wiggle Waggle",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Meow Face",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              }
+            ]
+          },
+          {
+            "name": "Golden Ticket",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              },
+              {
+                "name": "Summit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Summit",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Golden Ticket",
+            "status": "OPEN",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              },
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Summit Bowl",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Snowtooth Express"
+              },
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Hangar Bowl",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Big Gully",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Bigger Gully",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Broadway Bowl",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Summit"
+              }
+            ]
+          },
+          {
+            "name": "Fish Bowl",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Summit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Wally's",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Buford",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          },
+          {
+            "name": "Slippy Stream",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          },
+          {
+            "name": "Peacock",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          },
+          {
+            "name": "Fun Run",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          },
+          {
+            "name": "Sweet Treat",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          },
+          {
+            "name": "Stump Alley",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Wally's"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Western States",
+        "capacity": 6,
+        "status": "CLOSED",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Centennial",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Biennial",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Millenial",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Searcher",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "White Lightning",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Richard's Return",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              },
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Head Chutes Gate A",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Head Chutes Gate B",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          },
+          {
+            "name": "Head Chutes Gate C",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Whirlybird",
+        "capacity": 2,
+        "status": "HOLD",
+        "night": false,
+        "trailAccess": [
+          {
+            "name": "Bird Glade",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Big Bird",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Roller Park",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Owl Glade",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Whippersnapper Ridge",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Drop In",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Mosh Pit",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          },
+          {
+            "name": "Richard's Return",
+            "status": "CLOSED",
+            "accessedByLifts": [
+              {
+                "name": "Western States"
+              },
+              {
+                "name": "Whirlybird"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
