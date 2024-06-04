@@ -40,3 +40,38 @@ RESULTS
     ]
   }
 }
+
+-----------------------------------------
+
+query  {
+  totalDays
+  allDays {
+    id
+    date
+    mountain
+    conditions
+  }
+}
+
+
+RESULT:
+
+{
+  "data": {
+    "totalDays": 78,
+    "allDays": [
+      {
+        "id": "42528902-26ca-421b-870a-58500c13a146",
+        "date": "Hello World",
+        "mountain": "Hello World",
+        "conditions": "ICE"
+      },
+      {
+        "id": "fcba8b3b-7c5a-41e6-9065-051d22d3b959",
+        "date": "Hello World",
+        "mountain": "Hello World",
+        "conditions": "POWDER"
+      }
+    ]
+  }
+}
