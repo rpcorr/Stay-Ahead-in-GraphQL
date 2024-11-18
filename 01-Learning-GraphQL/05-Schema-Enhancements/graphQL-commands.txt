@@ -1,0 +1,22 @@
+mutation{
+  removeDay(id: "3") {
+    date
+    id
+    mountain
+  }
+}
+
+RESULT:
+
+{
+  "data": {
+    "removeDay": {
+      "date": "Hello World",
+      "id": "c36df486-576b-496e-a9b1-19b1c6a60703",
+      "mountain": "Hello World"
+    }
+  }
+}
+
+___________________________________________
+
