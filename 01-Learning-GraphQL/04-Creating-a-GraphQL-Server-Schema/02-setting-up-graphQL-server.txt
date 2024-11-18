@@ -1,0 +1,35 @@
+/* eslint-disable */
+02 Setting up a GraphQL server with Apollo server
+------------------------------------------------
+
+Create our own schema.  To do this, we need to create our first Apollo Server.
+
+1. Create a folder called "ski-day-counter"
+2. Go into the folder
+3. npm init -y (to accept all the defaults)
+4. install the depencies:
+    a: graphql
+    b: apollo-server
+    c: nodemon
+
+   npm i graphql apollo-server nodemon
+
+
+Resolvers.  These resolvers are just functions that are going to return data for the schema.
+
+const resolvers = {
+
+}
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
+})
+
+Instead of passing resolvers into this, we are going to pass in a key called mocks: true.  Mocks:true is going to mock data for the schema. So we don't need to worry about wiring up all of our data sources just yet. Instead, we can just worry about defining the schema that will be our API.
+
+Finally, we're going to call server.listen
+
+Let's run it: npm start
+
+We should get our own sandbox.
