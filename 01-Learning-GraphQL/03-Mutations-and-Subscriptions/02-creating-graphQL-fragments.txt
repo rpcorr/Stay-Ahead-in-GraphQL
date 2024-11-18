@@ -1,4 +1,13 @@
+We can take advantage of GraphQL Fragments for composition
+
+There is no operation to select all fields, e.g.  using *.  This is where Fragments comes in play.
+
+
 query {
+  allLifts {
+    ...AllFields
+  }
+
   Lift(id: "panorama") {
    ...AllFields
   }

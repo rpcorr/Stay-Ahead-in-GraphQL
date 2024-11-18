@@ -1,3 +1,5 @@
+So far, we know that queries get get data and mutation change data, but there is even a third type of GraphQL operation called a subscription. A GraphQL subscription works over web sockets and it sets up a listener.  It listens for any data changes in real time and will be present in our user interface.
+
 subscription {
   liftStatusChange{
     name
@@ -5,8 +7,10 @@ subscription {
   }
 }
 
-A GraphQL subscription works over web sockets and it sets up a listener.  It listens for any data changes in real time and will be present in our user interface.
+
 
 queries -> get data
 mutations -> change data
 subscriptions -> listen for data changes over a web socket in real time
+
+unlike a query, which just send the query, and get a response. A subscription, we set up a listener,  so we are listening for any changes and as soon as they come in, they will be present in our user interface.  A subscription sets up that "real-time" feel in your application.  These were first implemented at Facebook and they were used for live likes.

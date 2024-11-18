@@ -129,11 +129,10 @@ RETURNS
 
 -------------------------------------------------
 
-
-Show all lifts that are open and closed
+Show all lifts that are open and closed.  You cannot have liftCount twice as it will cause a conflict.  The solution is to create alais that comes before.  openLifts and closedLifts are alaises.
 
 query {
-  openLifs: liftCount(status: OPEN)
+  openLifts: liftCount(status: OPEN)
   closedLifts: liftCount(status: CLOSED)
   allLifts {
     name

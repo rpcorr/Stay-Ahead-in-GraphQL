@@ -1,3 +1,5 @@
+Mutation is a useful GraphQL operation that is useful.  Mutation are used whenever we need to change data.
+
 Setting a trail status from open to closed
 
 mutation {
@@ -19,3 +21,12 @@ RETURNS
 }
 
 ------------------------------------------------------
+
+Another way that we could do this, there is a Trail query. And this will select this individual trail.
+
+query Trail {
+  Trail(id: "goosebumps" ) {
+    name
+    status
+  }
+}
