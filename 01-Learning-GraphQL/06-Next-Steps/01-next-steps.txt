@@ -1,0 +1,6 @@
+Next Steps
+==========
+
+There are many different routes that you can take to use it in your own projects. For a look at all of the different libraries, check out graphql.org/code.
+
+Here,you will find different technologies and tools that you can use to build your own projects.  Instructor highly recommend the Apollo Stack, Hasura, Prisma, and AWS AppSync.  From here the possibilites are numerous.
