@@ -1,0 +1,24 @@
+Creating Subscriptions
+======================
+
+The type that we want to represent in the schema is the subscription.  So let's go ahead and add the subscription type. Remember, just like the mutation and the query, we're going to wrap any subscriptions that are available on this API here, and let's just call this newDay and it should return a SkiDay
+
+type Subscription {
+    newDay: SkiDay!
+}
+
+Once that is added, go back to the playground and it will be there.
+
+subscription {
+  newDay {
+    date
+  }
+}
+
+Result:
+
+{
+  "message": "Your subscription url is a websocket url, so your server must support graphql-ws or subscriptions-transport-ws protocol. If your server supports HTTP multipart subscriptions, change your subscription url to HTTP."
+}
+
+It'll say subscription field must return Iterable. That's fine.  We haven't set up any mocking for the subscription, but we still hve a container for it.  So that's what a subscription type looks like. It looks just like a mutation or a query.
