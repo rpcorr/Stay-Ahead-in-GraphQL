@@ -1,0 +1,46 @@
+Sending Input Types to Mutations
+================================
+
+Let's another mutation, addDay().  Now for addDay(), I want to send those values that are necessary like date and mountain and conditions and things like that.
+
+Here is a really good opportunity for input type.  Call it AddDayInput, this is a good name because it is often nice to associate the input type, specifically with the name of the mutation.
+
+type Mutation {
+    addDay(input: AddDayInput!): SkiDay
+}
+
+This will return a SkiDay object.
+
+Need to create the input
+
+input AddDayInput{
+    date: String!
+    mountain: String!
+    conditions: Conditions
+}
+
+Let's go back to playgroud
+
+mutation {
+  addDay(input: {
+    date: "1/2/2025",
+    mountain: "Alpine Meadows"
+    conditions: ICE
+  }) {
+    date
+  }
+}
+
+Now that we have added the fields to the input, we need to return something, so let's grab the date
+
+Result:
+
+{
+  "data": {
+    "addDay": {
+      "date": "Hello World"
+    }
+  }
+}
+
+Haven't wired up the data sources yet, so you won't see that actual value, but you'll know that this mutation will work, and this is a nice thing to be able to provide your front-end developers, even if the data sources are not wired, you can still add a day. You can still create a mutation that's going to work with their user interface.

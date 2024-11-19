@@ -1,0 +1,40 @@
+Returning a Custom Object
+=========================
+
+Currently, when we send the removeDay mutation, where we are returning an entire SkiDay. This will give us access to all of those fields that are on the SkiDay, but there is a pretty cool thing we can do to make this even better.
+
+We are going to create a custom type called RemoveDayPayload.  Just like our input type, we're associating this with a specific mutation by calling it removeDay. Remember, that a schema is all about communication, so it's really important that we use the proper names when defining this stuff.
+
+So, what is the RemoveDayPayload?  Well, we're going to add a little bit of metadata onto this type so that we can return it from its mutation.
+
+type RemoveDayPayload {
+    day: SkiDay!
+    remove: Boolean
+    totalBefore: Int
+    totalAfter: Int
+  }
+
+  type Mutation {
+    addDay(input: AddDayInput!): SkiDay
+    removeDay(id: ID!): RemoveDayPayload!
+  }
+
+  This will help calculate how many days before and after this operation was sent.
+
+
+
+  In the sandbox have the following:
+
+
+  mutation {
+  removeDay(id:"124") {
+    day {
+      mountain
+      date
+    }
+  }
+}
+
+The Result:
+
+Error - no mock defined for type Date

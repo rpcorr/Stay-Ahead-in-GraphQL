@@ -1,0 +1,35 @@
+Working with Mutations
+======================
+
+
+Just like we have a query type for all of our get operations, the operations that get data, we should create a mutation type that has all of our verbs, all of our action that are going to change data.
+
+So, create a removeDay mutation. It should take in the Id of the day to remove. And then from this a SkiDay.  Remember, we can return anything from a mutation, but we have to return something.  It could be a Boolean, could be an object. In this case, we'll return the entire SkiDay object, so we can have access to all the fields.
+
+type Mutation {
+    removeDay(id: ID!): SkiDay!
+}
+
+In our playground:
+
+(graphQL Commands)
+
+mutation{
+  removeDay(id: "3") {
+    date
+    id
+    mountain
+  }
+}
+
+RESULT:
+
+{
+  "data": {
+    "removeDay": {
+      "date": "Hello World",
+      "id": "c36df486-576b-496e-a9b1-19b1c6a60703",
+      "mountain": "Hello World"
+    }
+  }
+}
