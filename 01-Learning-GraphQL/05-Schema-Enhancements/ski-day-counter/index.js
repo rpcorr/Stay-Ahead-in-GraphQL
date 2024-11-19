@@ -28,9 +28,16 @@ const typeDefs = gql`
     conditions: Conditions
   }
 
+  type RemoveDayPayload {
+    day: SkiDay!
+    remove: Boolean
+    totalBefore: Int
+    totalAfter: Int
+  }
+
   type Mutation {
     addDay(input: AddDayInput!): SkiDay
-    removeDay(id: ID!): SkiDay!
+    removeDay(id: ID!): RemoveDayPayload!
   }
 `;
 
