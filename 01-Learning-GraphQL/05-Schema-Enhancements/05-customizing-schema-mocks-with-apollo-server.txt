@@ -1,0 +1,152 @@
+Customizing Schema Mocks with Apollo Server
+===========================================
+
+We just ran into this error where if I ask for the date field, it's giving us this no mock defined for type date error.
+
+So the way we can fix this is we need to create some custom mocks for the date field.  Right now we are using the default which return kind of dummy values for these fields. So we'll add a value for mocks.
+
+Now, instead of saying mocks true and using the defaults, we are going to just send mocks in.
+
+const server = new ApolloServer({
+  typeDefs,
+  mocks,
+});
+
+If we go back to the playground and send this again, it is always going to return this value for a date.
+
+mutation {
+  removeDay(id:"124") {
+    day {
+      mountain
+      date
+    }
+  }
+}
+
+Result:
+
+{
+  "data": {
+    "removeDay": {
+      "day": {
+        "mountain": "Hello World",
+        "date": "1/2/2025"
+      }
+    }
+  }
+}
+
+Now, of course, you can do this for different types too. Let's say for a string, you want to return "Cool data".  Once you set this up and send it again, anytime we're asking for a string, you're going to get that set string back.
+
+const mocks = {
+  Date: () => '1/2/2025',
+  String: () => 'Cool data',
+};
+
+
+In the playground:
+
+query {
+  allDays {
+    date
+    mountain
+    conditions
+  }
+}
+
+Results:
+
+{
+  "data": {
+    "allDays": [
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "POWDER"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "THIN"
+      }
+    ]
+  }
+}
+
+Now, this is just returning two values, two objects every time I send a query that returns a list. And that's because that's just the default.  We can pull in an instance of MockList from Apollo Server. And any time we're sending a query for alldays, it's going to look like this.
+
+need to require the following:
+const { MockList } = require('@graphql-tools/mock');
+
+Query: () => ({
+    allDays: () => new MockList(8)
+  })
+
+
+Back to our playground: 
+
+query {
+  allDays {
+    date
+    mountain
+    conditions
+  }
+}
+
+Result:  (8 instances)
+
+{
+  "data": {
+    "allDays": [
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "POWDER"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "POWDER"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "HEAVY"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "HEAVY"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "POWDER"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "ICE"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "THIN"
+      },
+      {
+        "date": "1/2/2025",
+        "mountain": "Cool data",
+        "conditions": "POWDER"
+      }
+    ]
+  }
+}
+
+It will always going to return two as a default.  If I use a mock list and pass it a single value, it'll always return that value.  You can also do this
+
+Query: () => ({
+    allDays: () => new MockList([1, 5])
+  })
+
+
+The above will produce between 1 and 5 entries

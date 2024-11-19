@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const { MockList } = require('@graphql-tools/mock');
 
 const typeDefs = gql`
   scalar Date
@@ -41,9 +42,17 @@ const typeDefs = gql`
   }
 `;
 
+const mocks = {
+  Date: () => '1/2/2025',
+  String: () => 'Cool data',
+  Query: () => ({
+    allDays: () => new MockList([1, 15]),
+  }),
+};
+
 const server = new ApolloServer({
   typeDefs,
-  mocks: true,
+  mocks,
 });
 
 server.listen().then(({ url }) => console.log(`Server running at ${url}`));
