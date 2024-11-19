@@ -1,0 +1,31 @@
+Writing Schema Documentation
+============================
+
+One of the coolest things we can do with our schema and one of the kindest things we can do for others who are using our schema, including ourselves, is we can add documentation.
+
+Let's say our schema is in space where it is really solid and it's ready to go.  What I can do is I can start to add documentation to each one of the fields and each one of the types.
+
+We're going to set up any documentation with three double quotes, Open three and close three double quotes.  
+
+We can document any individual fields with just a set of double quotes.
+
+
+"""
+  An object that describes the characteristics of a ski day
+  """
+  type SkiDay {
+    "A ski day's unique identifier"
+    id: ID!
+    "The date that a ski day occurred"
+    date: Date!
+    "The location where a ski day occurred"
+    mountain: String!
+    "The shape that the snow was in when this ski day happened"
+    conditions: Conditions
+  }
+
+  Now that the documentation has been added to the schema, it can checked out in the playground.  So if I open the documentation panel, I select this all ski day, and the documentation should be there.
+
+  IMPORTANT: A schema is all about communication.
+ 
+  So, in addition to naming your fields really well, in addition to creating these nice data relationships, we;re going to want to take the final step of documenting the schema just so that there's a lot of clarity around what thes types are and what your intentions are for them. So I definitely recommend taking this step. It's an extra step. It's one that should probably happen after you're pretty solid on what the schema entails, but I would recommend doing this for yourself and for other consumers of your API.
