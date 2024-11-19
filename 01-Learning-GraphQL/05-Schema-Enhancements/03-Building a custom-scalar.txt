@@ -1,0 +1,18 @@
+Building a Custom Scalar
+=========================
+
+You might be noticing that we're adding a string every time we're dealing with a date.  Date is a good opportunity to use one of those custom scalars.  A custom scalar is a customized value that's going to be used for a single value.  Instead of just returning a string, which is kind of an open-ended type, we can say, hey, the date should actually have semantic meaning to it.
+
+So I want to return a date and I want to send a date here.
+
+const typeDefs = gql `
+   scalar Date   -> return a date
+
+
+input AddDayInput {  -> send a date here.
+    date: Date!
+}
+
+Now you might be wondering, how do I define what a date actually is? And this is something to do in the resolver functions.  You don't need to worry about it at this moment when you are creating a schema.  Instead, you can just think about this as being a customized container for a date value, and then you can define this later using the resolver functions.
+
+So you can think about opportunities to use these all through your schemas.  Typically these goes at the top of the schema.  Scalar are use for email addresses, URLs, and all sort of different things, but you can use these in cases where you want to be a little bit more specific than a string.
