@@ -1,0 +1,68 @@
+Server Setup
+============
+
+For setting up our GraphQL environment, we need a base server set up and we'll use node to get this going. We'll also install Babel, so we can use JavaScript's latest syntax as we work with our application.
+
+1. Create a directory GraphQL
+2. Go into the GraphQL directory and type: npm init
+3. Install dependencies that we will need:
+      
+    - express ( npm i express)
+
+4. Install dev dependencies that we will need:
+
+    - Babel/Cli, Babel/core (npm i --save-dev @babel/cli @babel/core @babel/node @babel/preset-env)
+
+
+5. create a brand new file within the GraphQL folder and call it .babelrc   This is where we're going to enter the presets that we need in order for Babel to compile the code from the latest version of Javascript that we're going to use into a code that is understood when it's ran into your browser.
+
+.babelrc
+--------
+
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
+
+5. Install nodemon and configure package.json file
+
+npm i nodemon
+
+
+package.json
+------------
+
+"scripts": {
+    "start": "nodemon ./index.js --exec babel-node -e js"
+
+
+6. Create a index.js file (point of entry into our server)
+
+    - import express
+
+        import express from 'express';
+
+    - create our app which is an Express server
+
+        const app = express();
+    
+    - Let's say we open our server inside of a brower and we're asking for the point of entry, like so:
+
+        app.get('/', (req, res) => {
+        res.send('GraphQL is amazing!');
+        });
+
+    
+    - pass on what port we are listening to. Best to assign port to a variable so it can be easily changed if needed
+
+        const PORT = 8080;
+
+        app.listen(PORT, () =>
+             console.log(`Running server on localhost ${PORT}/graphql`)
+        );
+
+
+7. Open up terminal and type: npm start
+
+8. Open a browser and type in localhost:8080
