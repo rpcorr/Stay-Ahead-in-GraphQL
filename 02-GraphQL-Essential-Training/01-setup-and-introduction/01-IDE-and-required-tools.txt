@@ -1,0 +1,11 @@
+IDE and Required Tools
+======================
+
+GrahpQL doesn't require anything special outside of the tools you're currently using as a developer, so a good IDE or code editor will do the trick.
+
+There are some options with extensions or plugins that will make your experience as a developer smoother working with GraphQL.  For example VS Code with a GraphQL extension that provides some nifty tools when working with this framework.
+
+Tools
+-----
+
+VSCode GraphQL
