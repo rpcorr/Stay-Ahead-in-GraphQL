@@ -1,0 +1,14 @@
+GraphQL Overview
+=================
+
+What is GraphQL and what are the benefits of using it?  Is it a database? No. Is it a server? Somewhat. A client. Neither.
+
+So what is it?  A couple of years ago, Meta or Facebook was facing a challenge with their social network. When you're asking for information about friends or friends of their friends' friends, well, the current query options for the database in the market couldn't support.
+
+So anytime you would go further than four or five levels deep in your network, Facebook couldn't support it.  This is when they created GraphQL.
+
+GraphQL is a query language for any kind of APIs and is able to fulfill any queries across multiple databases. So in other words, it's not a server or a database. It's a query language.
+
+The main benefit of using it is that you can ask for exactly what you want and you'll get those results and nothing else.
+
+GraphQL is a great tool to add to your development arsenal.
