@@ -1,0 +1,10 @@
+Learn GraphQL Essentials
+========================
+
+Are you looking for a better way to fetch data from multiple sources?  This is where GraphQL comes in.
+
+In this course we'll explore GraphQL and Dev and demonstrate how to work with this library.  First, we'll walk through the set up of GraphQL. Then, we'll explore the syntax of all the different types and the schema.
+
+Next, we'll add a persistance to using MongoDB and SQL, so we can query multiple databases.
+
+Then we'll code mutations to add new items,  update and delete them.  Finally, we'll implement queries using advanced features.
