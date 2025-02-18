@@ -1,0 +1,65 @@
+Query and Mutation Types
+========================
+
+Queries and mutations are the basis of running operations in a GraphQL environment.
+
+First you have queries, which we already coded one for a product type. Query type is responsible for finding what will return when we make the query.
+
+Next we have mutations which is GraphQL's way of changing data, updating, or creating new data.
+
+Within index.js let's create an in-memory database.  Then we will use it, create a class, and then create new products just as an object inside of our application.
+
+index.js
+--------
+
+Before const root add:
+
+class Prodct {
+    constructor( id, { name, description, price, soldout, stores}) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.soldout = soldout;
+        this.stores = stores;
+    }
+}
+
+
+** will use a real database later, but in the meantime just create an object that will hold all the products that we'll create.
+
+
+const productDatabase = {}
+
+Then in the resolver, create a new product:
+
+createProduct: ({ input }) => {
+    let id = require('crypto').randomBytes(10).toString('hex');
+    productDatabase[id] = input;
+    return new Product(id, input);
+  },
+
+Basically we are creating a mini resolver by leveraging the database or the object that we've created (const productDatabase = {})
+
+in schema.js, add:
+
+type StoreInput {
+    store: String
+}
+
+type ProductInput {
+    id: ID
+    name: String
+    description: String
+    price: Float
+    soldout: Boolean
+    stores: [StoreInput]!    
+}
+
+All of these are elements that you need to create for mutations.
+
+Now create a Mutation
+
+type Mutation {
+        createProduct(input: ProductInput): Product
+}
