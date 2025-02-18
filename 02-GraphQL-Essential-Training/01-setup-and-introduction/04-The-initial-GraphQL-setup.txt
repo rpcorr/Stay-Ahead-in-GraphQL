@@ -1,0 +1,78 @@
+The Initial GraphQL setup
+=========================
+
+Now that we have a base server set up, let's add GraphQL to it. A few more things need to be added.  Install GraphQL:
+
+npm i graphql
+
+And there's a nice express package that integrates GraphQL with express very well.
+
+npm i express-graphql
+
+Create a data folder where we're going to have our resolvers, our database connections, and our schema.
+
+A schema is a blueprint for the data that GraphQL is accepting and what are the types for each of these elements.
+
+1. import {buildSchema} from "graphql";
+
+2. create a schema:
+
+   const schema = buildSchema(`
+        type Query {
+            hello: String
+        }
+   `)
+ 
+  Then inside of our schema, we have to define a type for a Query. We have to define a type for whatever types of data that you're going to receive, but you also need to define a type for your queries, a type for your mutations.
+
+  So whenever somebody is asking for the query hello, we expect a string
+
+
+index.js
+--------
+
+import express from 'express';
+import { graphqlHTTP } from 'express-graphql';
+import schema from './data/schema';
+
+const PORT = 8080;
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('GraphQL is amazing!');
+});
+
+const root = { hello: () => "Hi, I'm Ronan!" };
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true,
+  })
+);
+
+app.listen(PORT, () =>
+  console.log(`Running server on localhost:${PORT}/graphql`)
+);
+
+1. Go to the terminal and type: npm start
+2. Go to localhost:8080/graphql
+
+To show that it works, we are going to run the query we've created.  The query we've created can be seen under Docs
+
+In the left side type:
+
+query {
+    hello
+}
+
+The result (right side) is 
+
+{
+  "data": {
+    "hello": "Hi, I'm Ronan!"
+  }
+}
