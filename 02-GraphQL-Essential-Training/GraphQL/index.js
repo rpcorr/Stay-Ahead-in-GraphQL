@@ -10,7 +10,17 @@ app.get('/', (req, res) => {
   res.send('GraphQL is amazing!');
 });
 
-const root = { hello: () => "Hi, I'm Ronan!" };
+const root = {
+  product: () => {
+    return {
+      id: 29729872,
+      name: 'Widget',
+      description: 'Beautiful widget to use in the garden',
+      price: 34.99,
+      soldout: false,
+    };
+  },
+};
 
 app.use(
   '/graphql',

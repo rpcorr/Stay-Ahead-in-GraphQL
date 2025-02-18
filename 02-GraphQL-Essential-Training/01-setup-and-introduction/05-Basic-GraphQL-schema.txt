@@ -1,0 +1,58 @@
+Basic GraphQL schema
+====================
+
+To be able to make queries in GraphQL, you need to define a schema like we started working on here. But this is basically a query.  The schema defines the query type and then also what it is expecting.  Then a resolver will actually resolve the results from each API endpoint.
+
+So the type definition provides what type of data we expect and the resolvers gets the data for us.  We'll get started by defining our product type for our application and then resolve it with fake data for now.
+
+schema.js
+---------
+
+const schema = buildSchema(`
+    type Product {
+        id: ID
+        name: String
+        description: String
+        price: Float
+        soldout: Boolean
+    }
+
+    type Query {
+        product: Product
+    }
+`);
+
+index.js
+--------
+
+const root = {
+  product: () => {
+    return {
+      id: 29729872,
+      name: 'Widget',
+      description: 'Beautiful widget to use in the garden',
+      price: 34.99,
+      soldout: false,
+    };
+  },
+};
+
+Now that we have a resolver written. Let's go back to GraphiQL.  Now there will be an error with
+
+query {
+    hello
+}
+
+As in the documentation, the query is expecting a product with the elements of id, name, description, price, and soldout.
+
+Let's go and ask for a product inside the query
+
+query {
+    product{
+        name
+        description
+        price
+    }
+}
+
+click run and it's going to go through your resolver and resolve the data that you asked.
