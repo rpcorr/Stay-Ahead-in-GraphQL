@@ -18,6 +18,7 @@ const root = {
       description: 'Beautiful widget to use in the garden',
       price: 34.99,
       soldout: false,
+      stores: [{ store: 'Pasadena' }, { store: 'Los Angeles' }],
     };
   },
 };

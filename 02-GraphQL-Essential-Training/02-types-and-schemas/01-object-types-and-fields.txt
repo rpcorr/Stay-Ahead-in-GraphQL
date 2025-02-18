@@ -1,0 +1,86 @@
+Object Types and Fields
+=======================
+
+Everything in GraphQL is defined by types as we've done in our schema.  When defining a type, you are defining the shape of how this data will be and what type of data it expects.  For example in your current type, Product, we are expecting data to contain an ID, name, description, etc.
+
+Now we are going to add a store to our Product
+
+type Product {
+    id: ID
+    name: String
+    description: String
+    price: Float
+    soldout: Boolean
+    stores: [Store]!
+}
+
+Stores is an array that cannot be empty idenified by the !.  Therefore, we need to have a store absolutely with a product, otherwise, we won't be able to send the information to the database or whatever is connected to this type of Product.
+
+Now we need to define Store.
+
+schema.js
+---------
+
+type Store {
+    store: String 
+}
+
+Now go into our server and update the resolver to handle this.
+
+index.js
+--------
+
+const root = {
+  product: () => {
+    return {
+      id: 29729872,
+      name: 'Widget',
+      description: 'Beautiful widget to use in the garden',
+      price: 34.99,
+      soldout: false,
+      stores: [
+        { store: "Pasadena"},
+        { store: "Los Angeles" }
+      ],
+    };
+  },
+};
+
+Start the application and add:
+
+stores {
+  store
+}
+
+to the left side:
+
+query {
+  product {
+    name
+    description
+    price
+    stores {
+      store
+    }
+  }
+}
+
+The result:
+
+{
+  "data": {
+    "product": {
+      "name": "Widget",
+      "description": "Beautiful widget to use in the garden",
+      "price": 34.99,
+      "stores": [
+        {
+          "store": "Pasadena"
+        },
+        {
+          "store": "Los Angeles"
+        }
+      ]
+    }
+  }
+}
