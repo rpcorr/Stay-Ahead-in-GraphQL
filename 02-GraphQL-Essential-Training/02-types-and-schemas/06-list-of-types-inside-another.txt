@@ -1,0 +1,10 @@
+List of Types Inside Another
+============================
+
+In many cases, you will need to have inside of a field multiple values. For example, a list of episodes characters featured in a TV show.  This is where you can create a type for your list and use an array to signify a list of items inside of a field.  In our case, we already created it for the stores.  You can build on 
+
+type Store {
+    store: String 
+}
+
+To include an address, etc.
