@@ -1,0 +1,125 @@
+
+What is the resolver and its role?
+==================================
+
+Resolvers are the functions that respond to queries and mutations.  They are the function that gives us the result of the query. And because the standard approach is to leave the schema only for type definition, we create resolver functions seperate from the schema.  You can have them in a seperate file, and then import them into your main server file, or have them into your main entry server file.
+
+Let's create a file for the resolvers and take from index.js the following:
+
+class Product {
+  constructor(id, { name, description, price, soldout, stores }) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.price = price;
+    this.soldout = soldout;
+    this.stores = stores;
+  }
+}
+
+const productDatabase = {};
+
+const root = {
+  product: () => {
+    return {
+      id: 29729872,
+      name: 'Widget',
+      description: 'Beautiful widget to use in the garden',
+      price: 34.99,
+      soldout: false,
+      stores: [{ store: 'Pasadena' }, { store: 'Los Angeles' }],
+    };
+  },
+  createProduct: ({ input }) => {
+    let id = require('crypto').randomBytes(10).toString('hex');
+    productDatabase[id] = input;
+    return new Product(id, input);
+  },
+};
+
+
+Run the program and in left window have:
+
+mutation {
+  createProduct(input: {
+    name: "Widget",
+    description: "Another widget for your garden",
+    price: 23.99
+    soldout: false,
+    stores: [
+      {store: "Pasadena"},
+      {store: "Los Angeles"}
+    ]
+  }) {
+    price
+    name
+    description
+  }
+}
+
+The result:
+
+{
+  "data": {
+    "createProduct": {
+      "price": 23.99,
+      "name": "Widget",
+      "description": "Another widget for your garden"
+    }
+  }
+}
+
+Run another mutation:
+
+mutation {
+  createProduct(input: {
+    name: "Widget",
+    description: "Another widget for your garden",
+    price: 23.99
+    soldout: false,
+    stores: [
+      {store: "Pasadena"},
+      {store: "Los Angeles"}
+    ]
+  }) {
+    price
+    name
+    description
+    id
+  }
+}
+
+The result:
+
+{
+  "data": {
+    "createProduct": {
+      "price": 40.99,
+      "name": "Widget 23",
+      "description": "Another widget for your garden",
+      "id": "36bfeb2701c659a85eef"
+    }
+  }
+}
+
+Now take the id and run another query
+
+query {
+    getProduct(id: "36bfeb2701c659a85eef") {
+        price
+        name
+        description
+    }
+}
+
+The result:
+
+{
+  "data": {
+    "getProduct": {
+      "price": 40.99,
+      "name": "Widget 23",
+      "description": "Another widget for your garden"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './data/schema';
+import resolvers from './data/resolvers';
 
 const PORT = 8080;
 
@@ -10,36 +11,7 @@ app.get('/', (req, res) => {
   res.send('GraphQL is amazing!');
 });
 
-class Product {
-  constructor(id, { name, description, price, soldout, stores }) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.soldout = soldout;
-    this.stores = stores;
-  }
-}
-
-const productDatabase = {};
-
-const root = {
-  product: () => {
-    return {
-      id: 29729872,
-      name: 'Widget',
-      description: 'Beautiful widget to use in the garden',
-      price: 34.99,
-      soldout: false,
-      stores: [{ store: 'Pasadena' }, { store: 'Los Angeles' }],
-    };
-  },
-  createProduct: ({ input }) => {
-    let id = require('crypto').randomBytes(10).toString('hex');
-    productDatabase[id] = input;
-    return new Product(id, input);
-  },
-};
+const root = resolvers;
 
 app.use(
   '/graphql',
