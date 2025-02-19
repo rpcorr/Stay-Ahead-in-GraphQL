@@ -1,0 +1,93 @@
+Scalar Types
+============
+
+Scalar types are the basic types that come with GraphQL and can be used without having to create the type beforehand. So with GraphQL, we have access to these basic scalar types.
+
+There are:
+- int for integers
+- float for numbers with decimals
+- string
+- ID for unique identifier for each entry in GraphQL
+- Boolean true/false values
+
+For each field we enter into our type, like our product type, we need to define what scalar type it takes.
+
+Let's create a integer type field and include it into the resolvers
+
+schema.js
+---------
+
+type Product {
+    id: ID
+    name: String
+    description: String
+    price: Float
+    soldout: Boolean
+    inventory: Int
+    stores: [Store]!
+}
+
+input ProductInput {
+    id: ID
+    name: String
+    description: String
+    price: Float
+    soldout: Boolean
+    inventory: Int
+    stores: [StoreInput]!    
+}
+
+resolvers.js
+------------
+
+class Product {
+  constructor(id, { name, description, price, soldout, inventory, stores }) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.price = price;
+    this.soldout = soldout;
+    this.inventory = inventory
+    this.stores = stores;
+  }
+}
+
+
+Run the program:
+
+left side:
+
+mutation {
+  createProduct(input: {
+    name: "Widget 54",
+    description: "Another widget for your garden",
+    price: 52.99
+    soldout: false,
+    inventory: 10
+    stores: [
+      {store: "Thousand Oaks"},
+      {store: "Orlando"}
+    ]
+  }) {
+    price
+    name
+    description
+    inventory
+    id
+  }
+}
+
+
+right side:
+
+{
+  "data": {
+    "createProduct": {
+      "price": 52.99,
+      "name": "Widget 54",
+      "description": "Another widget for your garden",
+      "inventory": 10,
+      "id": "f978356e238451770b16"
+    }
+  }
+}
