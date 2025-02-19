@@ -1,0 +1,81 @@
+Enumeration Types
+=================
+
+Enumeration type, or commonly called enums, is a special scalar type that allows you to define a specific set of data the field takes and restrict the input to what you list in the enum type.
+
+
+ type Product {
+        id: ID
+        name: String
+        description: String
+        price: Float
+        soldout: Soldout
+        inventory: Int
+        stores: [Store]!
+    }
+
+    enum Soldout {
+        SOLDOUT
+        ONSALE
+    }
+
+Only two values can be listed or take these two values for the soldout field.
+
+Also update it here:
+
+input ProductInput {
+    id: ID
+    name: String
+    description: String
+    price: Float
+    soldout: Soldout
+    inventory: Int
+    stores: [StoreInput]!    
+}
+
+Back to GraphQL
+
+left side:
+
+mutation {
+  createProduct(input: {
+    name: "Widget 99",
+    description: "Another widget for your garden",
+    price: 12.99
+    soldout: false,
+    inventory: 10
+    stores: [
+      {store: "Thousand Oaks"},
+      {store: "Orlando"}
+    ]
+  }) {
+    price
+    name
+    description
+    inventory
+    id
+  }
+}
+
+
+right side:
+
+{
+  "errors": [
+    {
+      "message": "Enum \"Soldout\" cannot represent non-enum value: false.",
+      "locations": [
+        {
+          "line": 6,
+          "column": 14
+        }
+      ]
+    }
+  ]
+}
+
+
+An error shows because soldout value wasn't one of the enum values.
+
+Change soldout to ONSALE and now it will work.
+
