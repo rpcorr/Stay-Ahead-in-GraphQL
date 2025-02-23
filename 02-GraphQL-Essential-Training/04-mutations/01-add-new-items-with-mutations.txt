@@ -1,0 +1,62 @@
+Add New Items with Mutations
+============================
+
+Now that we have all our DBs properly connected, let's add some mutations for a GraphQL server.
+
+Let's change createProduct to an async function and create a new widget
+
+resolvers.js
+------------
+
+createProduct: async ({ input }) => {
+    const newWidget = new Widgets({
+      name: input.name,
+      description: input.description,
+      price: input.price,
+      soldout: input.soldout,
+      inventory: input.inventory,
+      stores: input.stores,
+    });
+  },
+};
+
+
+Once the new widget is created, let's add an ID to this widget:
+
+newWidget.id = newWidget._id;
+
+Then we're goin to resolve the function to connect to a db.  So we are going to try and await the newWidget to save to the database.  Then return the widget so we can actually see it in the GraphQL.  If it doesn't work catch the error
+
+try {
+    await newWidget.save();
+    return newWidget;
+} catch(error) {
+    throw new Error(error)
+}
+
+
+Let's go into our screen GraphQL here, and let's create a new product.
+
+On the left side add:
+
+mutation {
+  createProduct(input: {
+    name: "Shovel 2",
+    description: "Another shovel for your garden",
+    price: 14.99
+    soldout: ONSALE,
+    inventory: 30
+    stores: [
+      {store: "Thousand Oaks"},
+      {store: "Orlando"}
+    ]
+  }) {
+    price
+    name
+    description
+    inventory
+    soldout
+  }
+}
+
+Click run and open Studio 3T and you should see the new db entry.
