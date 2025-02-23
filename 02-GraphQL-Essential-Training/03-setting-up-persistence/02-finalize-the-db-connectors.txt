@@ -1,0 +1,44 @@
+Finalize the Database Connectors
+================================
+
+Now we are going to connect to our database.  Create a new file named dbConnectors in the data directory.
+
+dbConnectors.js
+---------------
+
+import mongoose from 'mongoose';
+
+async function connectMongo() {
+  try {
+    await mongoose.connect('mongodb://localhost/widgets');
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.log('Error connecting to MongoDB:', error);
+  }
+}
+
+connectMongo();
+
+Next create a widget schema so we know exactly what we expect from the MongoDB server.  Price is defined as a number in a mongoose.Schema and not as a float or an integer as defined in GraphQL.  Soldout is expected to be a string even though it is defined as an enum in the GraphQL server.  It is a string at the end of the day.
+
+const widgetSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  price: Number,
+  soldout: String,
+  inventory: String,
+  stores: Array,
+});
+
+Now we need to apply the schema to the widgets connection or the widgets database that we have on MongoDB.  Create a Widgets variable which will hold the model that we just defined with the schema and we will apply it to the widgets database.
+
+
+const Widgets = mongoose.model('widgets', widgetSchema);
+
+Next thing is to export this so we can use it afterwards in our resolvers.  We are going to export a default, but instead export widgets specifically because after that we're going to actually create the SQL or SQLite, a database connection down the road, and we are going to export that as well.  So we're going to use it in our resolvers.
+
+export { Widgets };
+
+
+
+
