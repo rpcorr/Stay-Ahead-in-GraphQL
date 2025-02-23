@@ -1,0 +1,55 @@
+Update Resolvers for mongodb
+============================
+
+Let's update the initial resolvers just to make sure we can actually use the DB connectors that we just created.
+
+Now update the getProduct and then what we'll do is createProduct, we'll update later on. Comment out for now.
+
+Update the getProduct into an async function.  Also don't need the Class Product or const productDatabase anymore.  Import {Widgets} from dbConnectors.  So this way we are leveraging the schema and everything that we've built inside of our connectors and use it in resolvers.js
+
+resolvers.js
+------------
+
+import { Widgets } from ./dbConnectors
+
+const resolvers = {
+    getProduct: async ({ id }) => {
+        try {
+        const product = await Widgets.findById(id);
+        return product;
+        } catch (error) {
+        throw new Error(error);
+        }
+    },
+
+}
+
+What we are doing here is leveraging the database connection that we created, plus the schema, plus everything that Mongoose has set up here, which is the Widgets. Next is to try to connect through our resolver. Again, the resolver is the function that returns from the database what we need. So in this case, getProduct will return a single product. So we need to pass an id and then we're going to try to connect to our widgets connection and find by ID a single item and return that single item.  Tf it doesn't work throw an error.
+
+Make sure our server is running and it says connected to MongoDB, too.  So that means we're successfully connected to MongoDB and everything is running as it should.  So let's go ahead and open up a new window and go to localhost:8080/graphql.
+
+I installed Studio 3T to get a GUI of my MongoDB on localhost.   Open up Studio 3T and copy and ID.
+
+Go to localhost:8080 and type in a query in the left:
+
+query {
+    getProduct(id: "6644c0dc451a198d53c622f9") {
+        name
+    		soldout
+        description
+    }
+}
+
+So, through MongoDB, we'll be able to now have a persistence, but also be able to query it from GraphQL.
+
+Run the query and now I have the product,
+
+{
+  "data": {
+    "getProduct": {
+      "name": "Shovel 2",
+      "soldout": "ONSALE",
+      "description": "Another shovel for your gardren"
+    }
+  }
+}
