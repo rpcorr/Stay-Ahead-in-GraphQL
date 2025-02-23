@@ -1,0 +1,94 @@
+Data Persistence with SQL
+-------------------------
+
+Adding any other database to GraphQL is a similar process, and I wanted to give you a quick example with SQLite.  Needless to say, you would have to update your resolvers and schema to support this new database and data, but for this sake of focusing on MongoDB, I'll quickly provide an example for SQL.
+
+Then the process of creating a function that resolves this particular data is similar to what we've done.
+
+After stopping server, let's install a few dependencies.  So, let's install:
+
+- casual
+- lodash
+- sequelize
+- sqlite3
+
+and these dependencies are going to allow to use SQLite3.
+
+npm i casual lodash sequelize sqlite3 --force
+
+start server (npm start)
+
+Now let's import a few things.
+
+dbConnectors.js
+---------------
+
+import { Sequelize, DataTypes } from 'sequelize';
+import _ from 'lodash';
+import casual from 'casual';
+
+Casual is needed to generate some data, that's why we're using casual here.
+
+Next is to create a connection to sequelize.
+
+const sequelize = new Sequelize('sqlite::memory:');
+
+Once you run this, FYI, you may have some warning about deprecation with this particular expression here: 
+
+const sequelize = new Sequelize('sqlite::memory:');
+
+So, I want to show yo that the Sequelize team have been warned about this and they're working on a fix.  It still work regardless.
+
+https://github.com/sequelize/sequelize/issues/16923  (since been resolved)
+
+Now what we are going to do is continue working on the functions that will connect to Sequelize.  So what we are going to do is create a categories model for our products.
+
+ - What is the category?
+ - What is the description of that category?
+
+ So basically this is what I would use for the second database for, just for the sake of example.
+
+ const Categories = sequelize.define('categories', {
+  category: DataTypes.STRING,
+  description: DataTypes.STRING,
+});
+
+Now that we've defined our schema for this particular Categories database now we can make an actual connection to Sequelize.
+
+
+seeding is a term for Sequelize, so meaning that we're creating elements inside the database.  So, what we're going to do here is just create the categories with casual. So we are going to create a bunch of categories just to fill the database a little bit with fake data.
+
+What we we're going to do is use a Promise.all, and using Lodash we're going to create a bunch of times, some fake data.  We are going to leverage casual to create this fake data.  So we're going to basically use Categories to create a few items in the database.  You're going to see all of this happen in real time on the console, so you will see Categories created, blah, blah, blah, as it connects to SQLite.
+
+Casual allows us to use any specific words, randomized words, and create these categories.  It's probably not goin to look like store categories, but we're using this just for the fake data purposes.  Casual is a good library to create fake data for my database if I ever need it.
+
+
+const sequelize = new Sequelize('sqlite::memory:');
+
+const Categories = sequelize.define('categories', {
+  category: DataTypes.STRING,
+  description: DataTypes.STRING,
+});
+
+async function syncAndSeedCategories() {
+  try {
+    await sequelize.sync( { force: true });
+    console.log('SQLite connection established and Categories model synced.')
+
+    // Seed categories
+    await Promise.all(_.times(5, () => {
+      return Categories.create({
+          category: casual.word,
+          description: casual.sentence,
+
+      });
+    }));
+
+    console.log('Categories seeded')
+  } catch(error ) {
+    console.log('Error with SQLite DB: ', error);
+  }
+}
+
+syncAndSeedCategories();
+
