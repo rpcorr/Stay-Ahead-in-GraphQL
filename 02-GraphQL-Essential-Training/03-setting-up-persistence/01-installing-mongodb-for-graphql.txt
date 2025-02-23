@@ -1,0 +1,17 @@
+Installing MongoDB for GraphQL
+==============================
+
+Right now, our data is only saved in memory.  When we stop the server, we lose any data persistence.  With our GraphQL server up and running and now with some knowledge about how it works, let's add persistence with MongoDB.
+
+Login: https://account.mongodb.com/account/login using Google
+Click "Browse Connections"
+
+You can do a check to make sure that your MongoDB service is running. Intall a tool that will allow you to check if you have the MongoDB service open and running.  The application is Robo 3T (GUI of the the database).
+
+The next thing that we need to install directly on the application is Mongoose.
+
+In the terminal type: npm i mongoose
+
+Mongoose is used to make the connection to the DB with MongoDB and then connect with our GraphQL server.
+
+npm i mongoose --force (force is needed to install)
