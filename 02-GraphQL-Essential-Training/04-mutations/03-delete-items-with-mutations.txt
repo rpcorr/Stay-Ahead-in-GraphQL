@@ -1,0 +1,42 @@
+Delete Items with Mutation
+==========================
+
+The final mutation we need for a GraphQL server is to be able to delete data. So let's add this mutation.
+
+First thing we are going to do is add a resolver.
+
+resolvers.js
+------------
+
+deleteProduct: async ({ id }) => {
+    try {
+      await Widgets.deleteOne({ _id: id });
+      return 'Successfully deleted widget';
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+Since we can't return a object, we will return a message.
+
+We also need to update the schema with basically the same thing as before.  Delete product input is an ID and we absolutely need to have that ID and return a string.  If we don't have an ID this function will return an error. So that's why we put the exclamation point here is mandatory to have an ID in order to remove database record and this mutation to work.  The return is a string, basically the message saying the 
+
+schema.js
+---------
+
+deleteProduct(id: ID!): String
+
+
+Back to GraphQL in the left panel have:
+
+mutation {
+  deleteProduct(id: "67bbb82a0ecf5372a1b43bc9")
+}
+
+The result:
+
+{
+  "data": {
+    "deleteProduct": "Successfully deleted widget"
+  }
+}
