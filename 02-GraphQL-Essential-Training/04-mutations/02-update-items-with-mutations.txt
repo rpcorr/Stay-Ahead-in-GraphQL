@@ -1,0 +1,76 @@
+Update Items with mutations
+===========================
+
+In a scenerio where you need to update items in the database with GraphQL, we also need to set up the proper mutations to do so.
+
+Let's update our resolvers to have an updateProduct which needs an input.  What we  are go to do is try to update the product by creating a variable that will hold widgets and try to update using findOneAndUpdate.  It needs a few things.  It needs an ID.  From the input, pass the ID of that object and make sure that we can find one in our database and then update it with the input.  We are also going to pass a parameter here - if it is not in the system, then create a new one.
+
+resolvers.js
+------------
+
+updateProduct: async ({input}) => {
+    try {
+        const updateWidget = await Widgets.findOneAndUpdate({ _id: input.id}, input, { new: true});
+        return updateWidget;
+    } catch(error) {
+      throw new Error(error);
+    }
+}
+
+Because we don't have the updateProduct resolver in the schema, we need to update the schema:
+
+schema.js
+----------
+
+type Mutation {
+    createProduct(input: ProductInput): Product
+    updateProduct(input: ProductInput): Product <-- added
+}
+
+
+Let's go into GraphQL.
+
+In the left side have:
+
+1. Create a new product
+
+mutation {
+  createProduct(input: {
+    name: "Shovel 4",
+    description: "Another widget for your garden",
+    price: 24.99
+    soldout: ONSALE,
+    inventory: 10
+    stores: [
+      {store: "Thousand Oaks"},
+      {store: "Orlando"}
+    ]
+  }) {
+    price
+    name
+    description
+    inventory
+    id
+  }
+}
+
+
+copy it's ID
+
+Now update the product:
+
+mutation {
+  updateProduct(input: {
+    id: "67bbb82a0ecf5372a1b43bc9"
+    price: 50.99
+    stores: [
+      {store: "Orlando"},
+      {store: "Los Angeles"}
+    ]
+  }) {
+    price
+    name
+  }
+}
+
+Click Run
