@@ -1,0 +1,57 @@
+Querying All Products
+=====================
+
+Querying all objects in GraphQL is often a need to get a list of items.  Now we need to add a resolver first.
+
+resolvers.js
+------------
+
+getAllProducts: async () => {
+    try {
+      return await Widgets.find({})
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
+  Now we need to add it to our schema and put it in our queries.  It returns an array of Product.
+
+  schema.js
+  ---------
+  getAllProducts: [Product]
+
+
+  Go into GraphQL and in the left side have the following:
+
+  query {
+  getAllProducts{
+    name
+    price
+    inventory
+  }
+}
+
+You can put as many fields as you like as you want to show in the results.
+
+{
+  "data": {
+    "getAllProducts": [
+      {
+        "name": "Widget",
+        "price": 34.99,
+        "inventory": null
+      },
+      {
+        "name": "Shovel 2",
+        "price": 14.99,
+        "inventory": 30
+      },
+      {
+        "name": "Shovel 2",
+        "price": 14.99,
+        "inventory": 30
+      }
+    ]
+  }
+}
