@@ -1,0 +1,36 @@
+Querying with Aliases
+=====================
+
+Aliases is a feature that comes right out of the box with GraphQL and doesn't require any coding.  It is basically a way to do multiple queries and name them with anything you want to properly label them.
+
+query {
+  widgetone: getProduct(id: "67bbb0d7bc78b6b05f8e85b2") {
+    name
+    description
+    price
+  }
+  widgettwo: getProduct(id: "6644b88c13ade72e1f76302c") {
+    name
+    inventory
+  }
+}
+
+So what is happening here is specific syntax around the alias. So there is an alias that's called widgetone, which is getting info from that product. And another alias, widgettwo, which is getting info from that product.  You can go on and on and on.
+
+the results:
+
+{
+  "data": {
+    "widgetone": {
+      "name": "Shovel 2",
+      "description": "Another shovel for your garden",
+      "price": 14.99
+    },
+    "widgettwo": {
+      "name": "Widget",
+      "inventory": null
+    }
+  }
+}
+
+Using alias could be useful when the front end is calling the backend from specific products and can construct the query with the same name or ID of the product to get the result with the proper label.
