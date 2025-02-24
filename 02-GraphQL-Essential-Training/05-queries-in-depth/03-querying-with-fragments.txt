@@ -1,0 +1,105 @@
+Querying with Fragments
+=======================
+
+Like alias fragments are a neat feature that comes built in with GraphQL and is very useful when we start requesting the same data across several items.
+
+So we have our two items here that have different aliases.
+
+query {
+  widgetone: getProduct(id: "67bbb0d7bc78b6b05f8e85b2") {
+    name
+    description
+    price
+  }
+  widgettwo: getProduct(id: "6644b88c13ade72e1f76302c") {
+    name
+    inventory
+  }
+}
+
+But what if we want to have the exact same information across all these different IDs?  What it could do here is build a fragment.  Then you can define exactly what you want for that specific fragment.
+
+fragment productFragment on Product {
+    name
+    description
+    price
+}
+
+How do I use a fragment inside my query syntax above? All that is needed is:
+
+query {
+  widgetone: getProduct(id: "67bbb0d7bc78b6b05f8e85b2") {
+    ...productFragment
+  }
+  widgettwo: getProduct(id: "6644b88c13ade72e1f76302c") {
+    ...productFragment
+  }
+}
+
+And now with this query, I can literally build multiple queries with aliases, but have the same information across all these different aliases. So a lot less typing and get a lot more information from this fragment.
+
+So if I run this, I am going to have the exact same information all my different aliases.
+
+{
+  "data": {
+    "widgetone": {
+      "name": "Shovel 2",
+      "description": "Another shovel for your garden",
+      "price": 14.99
+    },
+    "widgettwo": {
+      "name": "Widget",
+      "description": "Beautiful widget to use in the garden",
+      "price": 34.99
+    }
+  }
+}
+
+You can even be more specific. I could get all products on here.
+
+query {
+  widgetone: getProduct(id: "67bbb0d7bc78b6b05f8e85b2") {
+   ...productFragment
+  }
+  widgettwo: getAllProducts{
+    ...productFragment
+  }
+}
+
+fragment productFragment on Product {
+  name
+  description
+  price
+}
+
+
+The results:
+
+{
+  "data": {
+    "widgetone": {
+      "name": "Shovel 2",
+      "description": "Another shovel for your garden",
+      "price": 14.99
+    },
+    "widgettwo": [
+      {
+        "name": "Widget",
+        "description": "Beautiful widget to use in the garden",
+        "price": 34.99
+      },
+      {
+        "name": "Shovel 2",
+        "description": "Another shovel for your garden",
+        "price": 14.99
+      },
+      {
+        "name": "Shovel 2",
+        "description": "Another shovel for your garden",
+        "price": 14.99
+      }
+    ]
+  }
+}
+
+As you can see and very much like aliases, the use case for this is similar.  It could be used for getting multiple items and typing a lot less in your queries.
