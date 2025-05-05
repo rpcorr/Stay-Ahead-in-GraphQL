@@ -1,0 +1,17 @@
+WHY USE GRAPHQL FOR REST
+========================
+
+Why use GraphQL?
+----------------
+
+-> Type inspection
+-> Query multiple databases from one GraphQL server
+-> Flexibility of the queries
+
+However, GraphQL is not the best solution in all cases.
+
+If you are building a small application, or API, REST could be a much better approach.  Consider the cost of developing the GraphQL tool versus the value it may provide.
+
+If you're going to scale an application beyond the simple queries or already have a big implementation, then yes, GraphQL may make sense.
+
+Advice is to start small with REST 
