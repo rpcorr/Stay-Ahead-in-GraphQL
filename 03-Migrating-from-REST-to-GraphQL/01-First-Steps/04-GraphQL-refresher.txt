@@ -1,0 +1,29 @@
+GRAPHQL REFRESHER
+=================
+
+Schema and Types
+  -> Schema defines the shape of your data
+  -> Each property expects a type (for example, string)
+
+  Any properties or data you send or pull to GraphQL expects a type.  The purpose of this type assignment is to prevent any issues when adding new items to the database.
+
+   const schema = buildSchema(`
+    type Friend {
+        id: ID
+        firstName: String
+        lastName: String
+        gender: String
+        language: String
+        emails: [Email]!
+    }
+   `)
+
+Queries and Mutations
+
+type Mutation {
+    createFriend( input: FriendInput): Friend
+    updateFriend( input: FriendInput): Friend
+    deleteFriend(id: ID!): String
+}
+
+Another term is mutations. In GraphQL, you query the data or mutate the data. So adding or updating, or even deleting in GraphQL are mutations.
