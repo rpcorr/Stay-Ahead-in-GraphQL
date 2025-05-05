@@ -1,11 +1,14 @@
+require('dotenv').config({ path: 'config.env' }); // Load .env variables
 import mongoose from 'mongoose';
 import { Sequelize, DataTypes } from 'sequelize';
 import _ from 'lodash';
 import casual from 'casual';
 
+console.log('MONGO_URI:', process.env.MONGO_URI);
+
 async function connectMongo() {
   try {
-    await mongoose.connect('mongodb://localhost/widgets');
+    await mongoose.connect(process.env.ATLAS_MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (error) {
     console.log('Error connecting to MongoDB:', error);
