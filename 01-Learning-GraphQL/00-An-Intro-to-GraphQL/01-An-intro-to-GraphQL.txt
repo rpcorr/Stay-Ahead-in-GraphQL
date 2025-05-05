@@ -1,0 +1,10 @@
+An Introduction to GraphQL
+==========================
+
+API has provided us with a standard way of geting data and GraphQL gives us a new way of getting data and GraphQL gives us a new way of designing an API to serve up all types of data. 
+
+No matter where your data is, a database, a cloud service a rest API, GraphQL can serve as a wrapper for all of that data.
+
+Big companies like Github, PayPal, Expedia, Facebook, Twitter, and more have made big bets on GraphQL.
+
+GraphQL gives us a query language for asking questions of our data.
