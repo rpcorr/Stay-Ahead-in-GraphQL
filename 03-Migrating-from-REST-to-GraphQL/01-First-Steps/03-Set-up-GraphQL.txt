@@ -1,6 +1,24 @@
-import express from 'express';
+SET UP GRAPHQL
+==============
+
+Uninstall body-parser: npm uninstall body-parser
+
+Need to install a few things to move along with GraphQL.
+
+install GraphQL: npm i graphql
+
+
+Go into index.js and remove:
+
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+
+add:
+
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
+
+then add the following into index.js:
 
 // Build my schema
 const schema = buildSchema(`
