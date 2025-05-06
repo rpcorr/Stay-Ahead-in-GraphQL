@@ -1,0 +1,41 @@
+CREATE THE INITIAL SCHEMA AND TYPE
+==================================
+
+Need to set up a schema and define types for each of our properties.
+
+1. First rename models folder to data
+
+2. Create file named "schema.js"
+
+3.  Inside schema.js have:
+
+    import mongoose from 'mongoose';
+
+    const Schema = mongoose.Schema;
+
+
+4. Create a resolvers file (resolvers.js).  Resolvers are the functions that will make the queries with the database and then return a result inside of GraphQL
+
+5. Create dbConnectors.js file.  Within the file have the following:
+
+import { Schema } from 'mongoose';
+
+export const ContactSchema = new Schema({
+  firstName: {
+    type: String,
+    required: 'Enter a first name',
+  },
+  lastName: {
+    type: String,
+    required: 'Enter a last name',
+  },
+  email: {
+    type: String,
+  },
+  company: {
+    type: String,
+  },
+});
+
+
+
