@@ -6,6 +6,14 @@ export const resolvers = {
     getContacts: () => {
       return Contacts.find();
     },
+    getOneContact: async (root, { id }) => {
+      try {
+        const contact = await Contacts.findById(id);
+        return contact;
+      } catch (err) {
+        throw new Error(`Error retrieving one contact ${err.message}`);
+      }
+    },
   },
 
   Mutation: {

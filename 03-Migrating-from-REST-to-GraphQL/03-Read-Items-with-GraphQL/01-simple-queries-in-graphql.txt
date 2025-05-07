@@ -1,0 +1,53 @@
+SIMPLE QUERIES IN GRAPHQL
+=========================
+
+within the left side of http://localhost:3000/graphql type:
+
+query {
+    getContacts {
+        firstName
+        lastName
+    }
+}
+
+--------------------------
+
+query {
+    getContacts {
+        firstName
+        company
+    }
+}
+
+--------------------------
+
+
+I was getting an error when I added the following to resolvers.js:
+
+Query {
+    getOneContact: async (root, { id }) => {
+      try {
+        const contact = await Contacts.findById(id);
+        return contact;
+      } catch (err) {
+        throw new Error(`Error retrieving one contact ${err.message}`);
+      }
+    },
+}
+
+This was because getOneContact was not defined in schema.js
+
+type Query {
+    getContacts: [Contact]
+    getOneContact(id: ID!) : Contact
+}
+
+
+Now back to http://localhost:3000/graphql type:
+
+query {
+    getOneContact(id: "681bcf222be3970394158fe8") {
+      firstName,
+    company
+    }
+}
