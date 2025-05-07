@@ -1,0 +1,68 @@
+ADD A FEW ITEMS WITH GRAPHIQL
+=============================
+
+Let's finalize our server file to make sure that we can take all the information,the schema, the resolvers that we've built, and finalize our GraphQL server.
+
+Within index.js, remove import {buildSchema} from 'graphql';  as it was defined in the schema itself. So, let's import our schema:
+
+import { schema } from './src/data/schema';
+
+remove all code that was used to build the initial GraphQL server.  Also remove the root value because we've passed this inside of our schema as well.
+
+Run the  server.  An error happen initially due to type mutation and not type Mutation within schema.js.
+
+in the browser type the following: 
+
+mutation {
+  createContact(input: {
+    firstName: "Manny",
+    lastName: "Henri",
+    email: "me@me.com",
+    company: "LinkedIn"
+  }) {
+    id
+    firstName	
+  }
+}
+
+Another error happened.  To Fix it , within resolvers.js and CreatecreateContact under Mutation we are going to do an async promise instead.
+
+
+This:
+
+createContact: async (root, { input }) => {
+      const newContact = new Contacts({
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email: input.email,
+        company: input.company,
+      });
+
+      newContact.id = newContact._id;
+
+      try {
+        await newContact.save();
+        return newContact;
+      } catch (err) {
+        throw new Error(`Error saving contact: ${err.message}`);
+      }
+
+
+Instead of:
+
+createContact: async (root, { input }) => {
+      const newContact = new Contacts({
+        firstName: input.firstName,
+        lastName: input.lastName,
+        email: input.email,
+        company: input.company,
+      });
+
+      newContact.id = newContact._id;
+
+ return new Promise((resolve) => {
+    newContact.save((err) => {
+        if (err) reject(err);
+        else resolve(newContact);
+    });
+});

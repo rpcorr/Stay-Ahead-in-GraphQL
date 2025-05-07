@@ -22,7 +22,7 @@ const typeDefs = `
         company: String
    }
 
-   type mutation {
+   type Mutation {
         createContact(input: ContactInput): Contact
    }
 `;

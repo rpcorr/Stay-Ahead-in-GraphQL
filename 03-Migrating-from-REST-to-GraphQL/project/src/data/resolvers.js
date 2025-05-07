@@ -9,7 +9,7 @@ export const resolvers = {
   },
 
   Mutation: {
-    createContact: (root, { input }) => {
+    createContact: async (root, { input }) => {
       const newContact = new Contacts({
         firstName: input.firstName,
         lastName: input.lastName,
@@ -19,12 +19,20 @@ export const resolvers = {
 
       newContact.id = newContact._id;
 
-      return new Promise((resolve) => {
-        newContact.save((err) => {
-          if (err) reject(err);
-          else resolve(newContact);
-        });
-      });
+      try {
+        await newContact.save();
+        return newContact;
+      } catch (err) {
+        throw new Error(`Error saving contact: ${err.message}`);
+      }
+
+      // BELOW DID NOT WORK
+      //   return new Promise((resolve) => {
+      //     newContact.save((err) => {
+      //       if (err) reject(err);
+      //       else resolve(newContact);
+      //     });
+      //   });
     },
   },
 };

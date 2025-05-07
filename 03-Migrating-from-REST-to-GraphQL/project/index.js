@@ -1,20 +1,6 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import { buildSchema } from 'graphql';
-
-// Build my schema
-const schema = buildSchema(`
-    type Query {
-        hello: String
-    }
-`);
-
-// The root provide resolve function
-const root = {
-  hello: () => {
-    return 'Hello world';
-  },
-};
+import { schema } from './src/data/schema';
 
 const app = express();
 const PORT = 3000;
@@ -26,8 +12,7 @@ app.use(express.static('public'));
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema,
-    rootValue: root,
+    schema: schema,
     graphiql: true, // Enables the Graphiql IDE
   })
 );
