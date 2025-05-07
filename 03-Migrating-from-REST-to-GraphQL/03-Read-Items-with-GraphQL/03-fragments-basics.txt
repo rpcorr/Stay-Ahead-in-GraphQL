@@ -1,0 +1,56 @@
+FRAGMENTS BASICS
+================
+
+Like aliases, fragments are a neat feature that comes built in with GraphQL.  It is very useful when we start requesting the same data across several items.
+
+So let's say for example you wanted to have all three of these specific requests,
+
+query {
+    one: getOneContact(id: "681bcf222be3970394158fe8") {
+      firstName,
+      company
+    }
+
+two: getOneContact(id: "681bcf222be3970394158fe8") {
+      lastName,
+      id
+    }
+  
+three: getContacts {
+  lastName
+}
+}
+
+but with the same data. So instead of having firstName, company, lastName, ID and just last name for all these different queries, you want to have the same data show up, you would build a fragment.
+
+fragment contactFragment on Contact {
+    firstName
+    lastName
+    company
+}
+
+So what happens here, you're creating a fragment that stipulates we want these elements for all of these queries.  So what we would do now to make this work is basically by removing firstName company and replacing with ...[fragmentName]:
+
+
+query {
+    one: getOneContact(id: "681bcf222be3970394158fe8") {
+      ...contactFragment
+    }
+
+two: getOneContact(id: "681bcf222be3970394158fe8") {
+      ...contactFragment
+    }
+  
+three: getContacts {
+  ...contactFragment
+}
+}
+
+fragment contactFragment on Contact {
+    firstName
+    lastName
+    company
+}
+
+
+This is really useful when you want to have multiple queries with different users or different parameters but then you want to have the same information return, you build a fragment, and then you stipulate on that fragment exactly what you'd like to have for the information.
