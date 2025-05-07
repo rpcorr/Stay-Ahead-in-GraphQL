@@ -1,0 +1,36 @@
+PROGRAM THE INITIAL SCHEMA AND TYPE
+===================================
+
+Need to install a package called GraphQL Tools.  In the terminal type:
+
+npm i @graphql-tools/schema --force
+
+Note: If there are any dependency issues, you can force it too
+
+When we create type definitions, we are telling GraphQL that whenever there are queries or mutations that are done on the GraphQL server, these are the types that we're expecting for each of these keys.  If the type isn't matching the actual key, then there is an issue.
+
+When you're doing type definition, you're telling GraphQL what are the transactions that can happen and within those transactions, what are the types that we're suppose to expect, so all of this is predictable and also safer when we're making any changes, mutations, or queries inside of GraphQL.
+
+When we are querying GraphQL, to get contacts and then get an array of contacts, we are expecting to get these types:
+
+type Contact {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    company: String
+}
+
+When creating mutations, which is basically creating a new contact inside of GraphQL and then sending it to the database, we are expecting an input of this type:
+
+input ContactInput {
+    id: ID
+    firstName: String
+    lastName: String
+    email: String
+    company: String
+}
+
+So you can customize the input specifically when you're creating new contacts, or you can also be specific as to what you're expecting when you're querying GraphQL.
+
+Note:  GraphQL needs resolvers to run properly.

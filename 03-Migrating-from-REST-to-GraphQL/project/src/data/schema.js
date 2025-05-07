@@ -1,3 +1,32 @@
-import mongoose from 'mongoose';
+import { resolvers } from './resolvers';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
-const Schema = mongoose.Schema;
+const typeDefs = `
+   type Contact {
+        id: ID
+        firstName: String
+        lastName: String
+        email: String
+        company: String
+   }
+
+   type Query {
+        getContacts: [Contact]
+   }
+
+   input ContactInput {
+        id: ID
+        firstName: String
+        lastName: String
+        email: String
+        company: String
+   }
+
+   type mutation {
+        createContact(input: ContactInput): Contact
+   }
+`;
+
+const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+export { schema };
