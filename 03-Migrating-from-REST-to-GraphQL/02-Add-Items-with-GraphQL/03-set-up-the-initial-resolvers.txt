@@ -1,0 +1,18 @@
+SET UP THE INITIAL RESOLVERS
+=============================
+
+We'll set up our initial resolvers for our queries and the first mutations where we will be able to add new contacts with GraphQL and into a database.
+
+go into resolvers.js file and start by importing Contacts from our db connectors.
+
+Then we will create a resolver as an object, which will hold all the different queries and mutations.
+
+So we will start by creating the first query:
+
+Query: {
+    getContacts: () => {
+        return Contacts.find();
+    },
+},
+
+So because we're using right now Mongo, and we are going to use Mongoose to do these functions, we are using the find function from Mongoose (Contacts.find()).  Therefore when we use getContacts inside of GraphQL, it is going to resolve Contacts.find().
