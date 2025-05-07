@@ -1,0 +1,25 @@
+WHAT ARE ALIASES AND USEAGE
+===========================
+
+What are aliases?  They are way to get multiple queries in one pass with different patterns or different things that you want for specific people or a list of people.
+
+
+query {
+    one: getOneContact(id: "681bcf222be3970394158fe8") {
+      firstName,
+      company
+    }
+
+two: getOneContact(id: "681bcf222be3970394158fe8") {
+      lastName,
+      id
+    }
+
+three: getContacts {
+    lastName
+}
+}
+
+So where this is really useful is in certain cases for your applications, you need very specific things to be returned. And therefore, what you could do is have the one query have multiple sets of data through GraphQL. So this is where aliases comes really useful when you have a granular approach to what you need, and therefore you can use different types of query here for even the same contact or different contacts or a list of contacts.
+
+So you can always do this and the leverage the information that is returned inside of your state in your application, and basically use this for different contacts in your application.
