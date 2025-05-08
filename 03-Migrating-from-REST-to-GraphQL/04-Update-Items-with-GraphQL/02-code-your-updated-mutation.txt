@@ -1,0 +1,48 @@
+CODE YOUR UPDATED MUTATION
+==========================
+
+Let's create a mutation that will allow us to update a contact.
+
+
+in resolvers.js
+----------------
+
+updateContact: async (root, { input }) => {
+      try {
+        const updatedContact = await Contacts.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true }
+        );
+
+        return updatedContact;
+      } catch (err) {
+        throw new Error(`Error updating contact: ${err.message}`);
+      }
+    },
+  },
+
+
+  in schema.js:
+
+  type Mutation {
+        updateContact(input: ContactInput): Contact
+   }
+
+
+at localhost:3000/graphql, enter the following:
+
+mutation {
+   updateContact( input: {
+		id: "681bcf222be3970394158fe8"
+    firstName: "David"
+    lastName: "Henri"
+    company: "Nova"
+  }) {
+    firstName
+    lastName
+    company
+  }
+}
+
+Mutations is very useful, and especially if you consider the fact that you can have multiple databases connect to this one GraphQL server, which means that you can have SQL, you can have MongoDB, you can have Redis, Postgres, all these different types of databases where this one server can actually query into or mutate into multiple databases. This is where it becomes very powerful to use GraphQL.

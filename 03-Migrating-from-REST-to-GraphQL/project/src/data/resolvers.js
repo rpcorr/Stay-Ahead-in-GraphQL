@@ -42,5 +42,19 @@ export const resolvers = {
       //     });
       //   });
     },
+
+    updateContact: async (root, { input }) => {
+      try {
+        const updatedContact = await Contacts.findOneAndUpdate(
+          { _id: input.id },
+          input,
+          { new: true }
+        );
+
+        return updatedContact;
+      } catch (err) {
+        throw new Error(`Error updating contact: ${err.message}`);
+      }
+    },
   },
 };
