@@ -1,0 +1,8 @@
+OVERVIEW OF MUTATIONS
+=====================
+
+Mutations are the same thing as in the REST API when we add, delete, or update items.
+
+With mutations and GraphQL, all the queries are basically when we ask information from the server or the database or multiple databases.  Mutations is when we actually mutate or change those databases. So when we add, delete, or update items, these are all mutations.
+
+More information on mutations can be found by searching GraphQL mutations on the web (graphql.org/learn/queries)
