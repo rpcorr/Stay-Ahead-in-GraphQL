@@ -56,5 +56,13 @@ export const resolvers = {
         throw new Error(`Error updating contact: ${err.message}`);
       }
     },
+    deleteContact: async (root, { id }) => {
+      try {
+        await Contacts.deleteOne({ _id: id });
+        return 'Successfully deleted contact!';
+      } catch (err) {
+        throw new Error(`Error deleting contact: ${err.message}`);
+      }
+    },
   },
 };

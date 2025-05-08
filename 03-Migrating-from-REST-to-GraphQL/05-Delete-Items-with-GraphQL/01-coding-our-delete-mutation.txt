@@ -1,0 +1,25 @@
+CODING OUR DELETE MUTATION
+==========================
+
+What if we wanted to deleted a contact?  Let's go ahead and add the code to create that mutation.
+
+
+in resolvers.js under Mutation add:
+
+deleteContact: async (root, { id }) => {
+    try {
+    await Contacts.deleteOne({ _id: id });
+    return 'Successfully deleted contact!';
+    } catch (err) {
+    throw new Error(`Error deleting contact: ${err.message}`);
+    }
+},
+
+
+In schema.js under type Mutation add:
+
+type Mutation {
+        deleteContact(id: ID!): String
+}
+
+This time we have : String as it returns a string and not a contact.
