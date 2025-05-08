@@ -1,0 +1,18 @@
+FINAL TEST FOR YOUR MUTATIONS
+=============================
+
+In localhost:3000/graphql  get the lastest.
+
+query {
+    getContacts {
+        firstName
+        lastName
+        id
+    }
+}
+
+Now let's delete one.
+
+mutation {
+  deleteContact(id: "681bcf222be3970394158fe8")
+}
